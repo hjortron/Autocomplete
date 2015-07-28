@@ -1,0 +1,33 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="AutoComplete.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="WORD_POS" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="FREQ_POS" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="WORD_FIELD_NAME" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Word</Value>
+    </Setting>
+    <Setting Name="FREQ_FIELD_NAME" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Frequency</Value>
+    </Setting>
+    <Setting Name="LUCENE_VERSION" Type="Lucene.Net.Util.Version" Scope="User">
+      <Value Profile="(Default)">LUCENE_30</Value>
+    </Setting>
+    <Setting Name="LUCENE_INDEX_DIRECTORY" Type="System.String" Scope="User">
+      <Value Profile="(Default)">lucene_index</Value>
+    </Setting>
+    <Setting Name="DICTIONARY_FILE_NAME" Type="System.String" Scope="User">
+      <Value Profile="(Default)">test.in</Value>
+    </Setting>
+    <Setting Name="HITS_LIMIT" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">10</Value>
+    </Setting>
+    <Setting Name="LUCENE_INTEGER_TYPE" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">4</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
