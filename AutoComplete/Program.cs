@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using AutoComplete.Search;
 
 namespace AutoComplete
@@ -13,14 +9,15 @@ namespace AutoComplete
         static void Main(string[] args)
         {
             var dictionaryPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "test.in");
-            LuceneSearch.ReadFileToLuceneIndex(dictionaryPath);
+            var fileStream = new FileStream(dictionaryPath, FileMode.Open, FileAccess.Read);
+            var luceneSearch = new LuceneSearch();
+            luceneSearch.LoadStreamIntoLuceneIndex(fileStream);
             var search = Console.ReadLine();
-            var result = LuceneSearch.Search(search);
+            var result = luceneSearch.Search(search);
 
             foreach (var word in result)
             {
-                Console.WriteLine(word);
-               
+                Console.WriteLine(word);               
             }
             Console.ReadKey();
         }
