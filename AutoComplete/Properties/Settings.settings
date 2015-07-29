@@ -29,5 +29,8 @@
     <Setting Name="LUCENE_INTEGER_TYPE" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">4</Value>
     </Setting>
+    <Setting Name="SERVER_URL" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://localhost:8080</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

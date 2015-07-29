@@ -9,27 +9,44 @@ using Lucene.Net.Index;
 using Lucene.Net.QueryParsers;
 using Lucene.Net.Search;
 using Lucene.Net.Store;
-using Directory = Lucene.Net.Store.Directory;
 
 namespace AutoComplete.Search
 {
     public class LuceneSearch
     {
-        private static readonly Settings Settings = Settings.Default;
-        private static readonly string LuceneDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Settings.LUCENE_INDEX_DIRECTORY);
-        private static Directory _directory;
-        private static Sort _sorter;
-        private static readonly StandardAnalyzer Analyzer = new StandardAnalyzer(Settings.LUCENE_VERSION);
-        private static readonly QueryParser QueryParser = new QueryParser(Settings.LUCENE_VERSION, Settings.WORD_FIELD_NAME, Analyzer);
+        private readonly Settings Settings;
+        private string _luceneDirPath;
+        private Lucene.Net.Store.Directory _directory;
+        private Sort _sorter;
+        private StandardAnalyzer _analyzer;
+        private QueryParser _queryParser;
 
-        public LuceneSearch() {}
-
-        public LuceneSearch(Directory directory)
+        public LuceneSearch()
         {
-            _directory = directory;
+            Settings = AutoComplete.Properties.Settings.Default;
+            InitComponents();
+            
+            var dictionaryPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Settings.DICTIONARY_FILE_NAME);
+            var fileStream = new FileStream(dictionaryPath, FileMode.Open, FileAccess.Read);
+
+            LoadStreamIntoLuceneIndex(fileStream);                                       
         }
 
-        private static Sort Sorter
+        public LuceneSearch(Lucene.Net.Store.Directory directory)
+        {
+            _directory = directory;
+            Settings = Settings.Default;
+            InitComponents();
+        }
+
+        private void InitComponents()
+        {
+            _analyzer = new StandardAnalyzer(Settings.LUCENE_VERSION);
+            _queryParser = new QueryParser(Settings.LUCENE_VERSION, Settings.WORD_FIELD_NAME, _analyzer);
+            _luceneDirPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Settings.LUCENE_INDEX_DIRECTORY);
+        }
+
+        private Sort Sorter
         {
             get
             {
@@ -42,19 +59,19 @@ namespace AutoComplete.Search
             }
         }
 
-        private static Directory Directory
+        private Lucene.Net.Store.Directory Directory
         {
             get
             {
                 if (_directory == null)
                 {
-                    _directory = FSDirectory.Open(new DirectoryInfo(LuceneDir));
+                    _directory = FSDirectory.Open(new DirectoryInfo(_luceneDirPath));
                 }
                 if (IndexWriter.IsLocked(_directory))
                 {
                     IndexWriter.Unlock(_directory);
                 }
-                var lockFilePath = Path.Combine(LuceneDir, "write.lock");
+                var lockFilePath = Path.Combine(_luceneDirPath, "write.lock");
                 if (File.Exists(lockFilePath))
                 {
                     File.Delete(lockFilePath);
@@ -80,7 +97,7 @@ namespace AutoComplete.Search
         public bool LoadStreamIntoLuceneIndex(Stream fileStream)
         {
             var resultState = false;
-            using (var writer = new IndexWriter(Directory, Analyzer, IndexWriter.MaxFieldLength.UNLIMITED))
+            using (var writer = new IndexWriter(Directory, _analyzer, IndexWriter.MaxFieldLength.UNLIMITED))
             {
                 using (var fileReader = new StreamReader(fileStream))
                 {                    
@@ -122,7 +139,7 @@ namespace AutoComplete.Search
            
             using (var searcher = new IndexSearcher(Directory))
             {                              
-                var query = ParseQuery(wordForAutocomplete, QueryParser);
+                var query = ParseQuery(wordForAutocomplete, _queryParser);
                 var filter = new QueryWrapperFilter(query);
                 var hits = searcher.Search(query, filter, Settings.HITS_LIMIT, Sorter).ScoreDocs;
                 var results = hits.Select(hit => searcher.Doc(hit.Doc).GetField(Settings.WORD_FIELD_NAME).StringValue).ToArray();             

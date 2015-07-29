@@ -11,9 +11,7 @@ namespace AutoComplete.Tests
 {
     [TestFixture]
     public class LuceneSearchTests
-    {
-        private static readonly Settings Settings = Settings.Default;
-
+    {      
         [TestCase("test 2", true)]
         [TestCase("test2", false)]
         public void LoadStreamIntoLuceneIndex_ReturnsPredictableResult(string testString, bool result)

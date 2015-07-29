@@ -8,20 +8,14 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System.CodeDom.Compiler;
-using System.Configuration;
-using System.Diagnostics;
-using System.Runtime.CompilerServices;
-using Lucene.Net.Util;
-
 namespace AutoComplete.Properties {
     
     
-    [CompilerGenerated()]
-    [GeneratedCode("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "12.0.0.0")]
-    public sealed partial class Settings : ApplicationSettingsBase {
+    [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "12.0.0.0")]
+    public sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
-        private static Settings defaultInstance = ((Settings)(Synchronized(new Settings())));
+        private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
         
         public static Settings Default {
             get {
@@ -29,9 +23,9 @@ namespace AutoComplete.Properties {
             }
         }
         
-        [UserScopedSetting()]
-        [DebuggerNonUserCode()]
-        [DefaultSettingValue("0")]
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
         public int WORD_POS {
             get {
                 return ((int)(this["WORD_POS"]));
@@ -41,9 +35,9 @@ namespace AutoComplete.Properties {
             }
         }
         
-        [UserScopedSetting()]
-        [DebuggerNonUserCode()]
-        [DefaultSettingValue("1")]
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
         public int FREQ_POS {
             get {
                 return ((int)(this["FREQ_POS"]));
@@ -53,9 +47,9 @@ namespace AutoComplete.Properties {
             }
         }
         
-        [UserScopedSetting()]
-        [DebuggerNonUserCode()]
-        [DefaultSettingValue("Word")]
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Word")]
         public string WORD_FIELD_NAME {
             get {
                 return ((string)(this["WORD_FIELD_NAME"]));
@@ -65,9 +59,9 @@ namespace AutoComplete.Properties {
             }
         }
         
-        [UserScopedSetting()]
-        [DebuggerNonUserCode()]
-        [DefaultSettingValue("Frequency")]
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Frequency")]
         public string FREQ_FIELD_NAME {
             get {
                 return ((string)(this["FREQ_FIELD_NAME"]));
@@ -77,21 +71,21 @@ namespace AutoComplete.Properties {
             }
         }
         
-        [UserScopedSetting()]
-        [DebuggerNonUserCode()]
-        [DefaultSettingValue("LUCENE_30")]
-        public Version LUCENE_VERSION {
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("LUCENE_30")]
+        public global::Lucene.Net.Util.Version LUCENE_VERSION {
             get {
-                return ((Version)(this["LUCENE_VERSION"]));
+                return ((global::Lucene.Net.Util.Version)(this["LUCENE_VERSION"]));
             }
             set {
                 this["LUCENE_VERSION"] = value;
             }
         }
         
-        [UserScopedSetting()]
-        [DebuggerNonUserCode()]
-        [DefaultSettingValue("lucene_index")]
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("lucene_index")]
         public string LUCENE_INDEX_DIRECTORY {
             get {
                 return ((string)(this["LUCENE_INDEX_DIRECTORY"]));
@@ -101,9 +95,9 @@ namespace AutoComplete.Properties {
             }
         }
         
-        [UserScopedSetting()]
-        [DebuggerNonUserCode()]
-        [DefaultSettingValue("test.in")]
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("test.in")]
         public string DICTIONARY_FILE_NAME {
             get {
                 return ((string)(this["DICTIONARY_FILE_NAME"]));
@@ -113,9 +107,9 @@ namespace AutoComplete.Properties {
             }
         }
         
-        [UserScopedSetting()]
-        [DebuggerNonUserCode()]
-        [DefaultSettingValue("10")]
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
         public int HITS_LIMIT {
             get {
                 return ((int)(this["HITS_LIMIT"]));
@@ -125,15 +119,27 @@ namespace AutoComplete.Properties {
             }
         }
         
-        [UserScopedSetting()]
-        [DebuggerNonUserCode()]
-        [DefaultSettingValue("4")]
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("4")]
         public int LUCENE_INTEGER_TYPE {
             get {
                 return ((int)(this["LUCENE_INTEGER_TYPE"]));
             }
             set {
                 this["LUCENE_INTEGER_TYPE"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:8080")]
+        public string SERVER_URL {
+            get {
+                return ((string)(this["SERVER_URL"]));
+            }
+            set {
+                this["SERVER_URL"] = value;
             }
         }
     }
